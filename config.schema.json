@@ -25,7 +25,7 @@
         "required": true,
         "default": "",
         "description": "HTTP access password"
-      },
+      }
     }
   }
 }

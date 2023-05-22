@@ -42,27 +42,26 @@ class DummyGarage {
 	}
 
 	triggerExternalOpen() {
+		this.log("Sending HTTP request");
 		const options = {
 			hostname: '127.0.0.1',
 			port: 31337,
 			path: '/',
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json',
 				'Authorization': 'Basic ' + Buffer.from('user:'+this.password).toString('base64')
 			}
 		};
 		
 		http.request(options, res => {
-			console.log(`STATUS: ${res.statusCode}`);
+			this.log(`STATUS: ${res.statusCode}`);
 			res.setEncoding('utf8');
 			res.on('data', chunk => {
-				console.log(`BODY: ${chunk}`);
+				this.log(`BODY: ${chunk}`);
 			});
 		}).on('error', e => {
-			console.error(`problem with request: ${e.message}`);
+			this.error(`problem with request: ${e.message}`);
 		});
-	
 	}
 
 	setupGarageDoorOpenerService(service) {
