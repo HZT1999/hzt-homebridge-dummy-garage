@@ -19,6 +19,20 @@
         "default": 0,
         "description": "Number of seconds after opening door will automatically close. 0 to disable."
       },
+      "url": {
+        "title": "HTTP URL",
+        "type": "string",
+        "required": true,
+        "default": "http://127.0.0.1:31337/",
+        "description": "HTTP URL to open garage door"
+      },
+      "user": {
+        "title": "Username",
+        "type": "string",
+        "required": true,
+        "default": "user",
+        "description": "HTTP access username"
+      },
       "password": {
         "title": "Password",
         "type": "string",

@@ -1,6 +1,6 @@
-var Service, Characteristic, HomebridgeAPI;
+import axios from 'axios';
 
-const http = require('http');
+var Service, Characteristic, HomebridgeAPI;
 
 module.exports = function (homebridge) {
 	Service = homebridge.hap.Service;
@@ -15,6 +15,8 @@ class DummyGarage {
 		//get config values
 		this.name = config['name'] || "Dummy Garage";
 		this.autoCloseDelay = config["autoCloseDelay"] === undefined ? 0 : Number(config["autoCloseDelay"]);
+		this.user = config["user"];
+		this.url = config["url"];
 		this.password = config["password"];
 
 		//persist storage
@@ -43,25 +45,13 @@ class DummyGarage {
 
 	triggerExternalOpen() {
 		this.log("Sending HTTP request");
-		const options = {
-			hostname: '127.0.0.1',
-			port: 31337,
-			path: '/',
-			method: 'POST',
-			headers: {
-				'Authorization': 'Basic ' + Buffer.from('user:'+this.password).toString('base64')
-			}
-		};
-		
-		http.request(options, res => {
-			this.log(`STATUS: ${res.statusCode}`);
-			res.setEncoding('utf8');
-			res.on('data', chunk => {
-				this.log(`BODY: ${chunk}`);
-			});
-		}).on('error', e => {
-			this.error(`problem with request: ${e.message}`);
-		});
+		axios.post(this.url, {}, { auth: { username: this.user, password: this.password } })
+		  .then(function (response) {
+			this.log(response);
+		  })
+		  .catch(function (error) {
+			this.log(error);
+		  });
 	}
 
 	setupGarageDoorOpenerService(service) {
