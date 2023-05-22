@@ -45,13 +45,7 @@ class DummyGarage {
 
 	triggerExternalOpen() {
 		this.log("Sending HTTP request");
-		axios.post(this.url, {}, { auth: { username: this.user, password: this.password } })
-		  .then(function (response) {
-			this.log(response);
-		  })
-		  .catch(function (error) {
-			this.log(error);
-		  });
+		axios.post(this.url, {}, { auth: { username: this.user, password: this.password } });
 	}
 
 	setupGarageDoorOpenerService(service) {

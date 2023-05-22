@@ -1,6 +1,6 @@
 {
   "name": "homebridge-dummy-garage-zakx",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Dummy Garage Opener for Homebridge (private version, do not use)",
   "license": "MIT",
   "repository": {
