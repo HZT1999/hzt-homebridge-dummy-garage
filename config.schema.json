@@ -18,7 +18,14 @@
         "type": "integer",
         "default": 0,
         "description": "Number of seconds after opening door will automatically close. 0 to disable."
-      }
+      },
+      "password": {
+        "title": "Password",
+        "type": "string",
+        "required": true,
+        "default": "",
+        "description": "HTTP access password"
+      },
     }
   }
 }
