@@ -6,11 +6,17 @@ module.exports = function (homebridge) {
 	Service = homebridge.hap.Service;
 	Characteristic = homebridge.hap.Characteristic;
 	HomebridgeAPI = homebridge;
-	homebridge.registerAccessory('homebridge-dummy-garage-hzt', 'DummyGarage', DummyGarage);
+	homebridge.registerAccessory('homebridge-dummy-garage-hzt', DummyGarage);
 }
 
 class DummyGarage {
-	constructor(log, config) {
+	constructor(log, config, api) {
+
+		this.log = log;
+		this.config = config;
+		this.api = api;
+
+		this.log("HZT HomeBridge Dummy Garage Plugin Loaded");
 
 		//get config values
 		this.name = config['name'] || "Dummy Garage";
@@ -28,7 +34,7 @@ class DummyGarage {
 		//initial setup
 		this.log = log;
 		this.lastOpened = new Date();
-		this.service = new Service.GarageDoorOpener(this.name, this.name);
+		this.service = new Service.GarageDoorOpener(this.name);
 		this.setupGarageDoorOpenerService(this.service);
 
 		this.informationService = new Service.AccessoryInformation();
@@ -81,7 +87,7 @@ class DummyGarage {
 					this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN);
 					this.storage.setItem(this.name, true);
 					this.log.debug("autoCloseDelay = " + this.autoCloseDelay);
-					this.triggerExternalOpen();
+					// this.triggerExternalOpen();
 
 					if (this.autoCloseDelay > 0) {
 						this.log("Closing in " + this.autoCloseDelay + " seconds.");
