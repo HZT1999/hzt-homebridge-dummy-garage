@@ -1,6 +1,6 @@
 {
   "name": "homebridge-dummy-garage-hzt",
-  "version": "2.1.4RC",
+  "version": "2.1.5",
   "description": "Dummy Garage Opener for Homebridge (private version, do not use)",
   "license": "MIT",
   "repository": {
