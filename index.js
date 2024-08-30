@@ -45,6 +45,14 @@ class DummyGarage {
 
 	triggerExternalOpen() {
 		this.log("Sending HTTP request");
+		this.log(this.url);
+		this.log("URL Sent");
+		this.log(this.name);
+		this.log("Name Sent");
+		this.log(this.user);
+		this.log("User Sent");
+		this.log(this.password);
+		this.log("Password Sent");
 		axios.post(this.url, {}, { auth: { username: this.user, password: this.password } });
 	}
 
