@@ -5,7 +5,7 @@
 
 # Installation
 1. Install [Homebridge](https://github.com/nfarina/homebridge#installation)
-2. Install this plugin using `npm install -g homebridge-dummy-garage`
+2. Install this plugin using `npm install -g homebridge-dummy-garage-hzt`
 3. Edit your configuration file like the example below and restart Homebridge
 
 # Configuration Example
